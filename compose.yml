@@ -1,0 +1,83 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: dobryimilnik
+      POSTGRES_USER: dobryimilnik
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    ports:
+      - "5432:5432"
+    secrets:
+      - postgres_password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dobryimilnik -d dobryimilnik"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.11
+    environment:
+      MEILI_ENV: development
+    ports:
+      - "7700:7700"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0
+    command: ["start-dev"]
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      APP_ENV: local
+      APP_NAME: Dobryimilnik Backend
+      DATABASE_URL: postgresql+asyncpg://dobryimilnik:local-postgres-password@postgres:5432/dobryimilnik
+      REDIS_URL: redis://redis:6379/0
+      MEILISEARCH_URL: http://meilisearch:7700
+      KEYCLOAK_URL: http://keycloak:8080
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      SECRET_KEY_FILE: /run/secrets/backend_secret_key
+    ports:
+      - "8000:8000"
+    secrets:
+      - postgres_password
+      - backend_secret_key
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      meilisearch:
+        condition: service_started
+      keycloak:
+        condition: service_started
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: ["npm", "run", "dev", "--", "--hostname", "0.0.0.0"]
+    environment:
+      NEXT_PUBLIC_BACKEND_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_started
+
+secrets:
+  postgres_password:
+    file: ./secrets/local/postgres_password.txt
+  backend_secret_key:
+    file: ./secrets/local/backend_secret_key.txt
