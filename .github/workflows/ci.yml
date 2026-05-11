@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: dobryimilnik
+          POSTGRES_USER: dobryimilnik
+          POSTGRES_PASSWORD: local-postgres-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U dobryimilnik -d dobryimilnik"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql+asyncpg://dobryimilnik:local-postgres-password@localhost:5432/dobryimilnik
+      UV_CACHE_DIR: /tmp/uv-cache
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        run: python -m pip install uv
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: frontend
+
+      - name: Backend lint
+        run: make backend-lint
+
+      - name: Backend type check
+        run: make backend-type
+
+      - name: Backend tests
+        run: make backend-test
+
+      - name: Migration upgrade
+        run: make migrate-up
+
+      - name: Migration downgrade
+        run: make migrate-down
+
+      - name: Frontend lint
+        run: make frontend-lint
+
+      - name: Frontend type check
+        run: make frontend-type
+
+      - name: Frontend build
+        run: make frontend-build
+
+      - name: Compose config
+        run: make prepare-local-secrets && docker compose config
+
+      - name: Backend Docker image
+        run: docker build -t dobryimilnik-backend:test backend
