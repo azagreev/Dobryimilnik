@@ -59,6 +59,7 @@ completed: 2026-05-11
 1. **Task 1: Implement local/prod settings model** - `ad666e1`
 2. **Task 2: Model Compose secrets and document environment rules** - `ad666e1`
 3. **Review fix: Derive database password from secret file** - `cc2ca17`
+4. **Review fix: URL-encode injected database password** - `1fb613d`
 
 ## Files Created/Modified
 
@@ -86,9 +87,17 @@ completed: 2026-05-11
 - **Verification:** `UV_CACHE_DIR=/tmp/uv-cache make backend-lint`, `UV_CACHE_DIR=/tmp/uv-cache make backend-type`, `UV_CACHE_DIR=/tmp/uv-cache make backend-test`
 - **Committed in:** `cc2ca17`
 
+**2. [Rule 3 - Blocking] URL-encoded injected database password**
+- **Found during:** Code review follow-up
+- **Issue:** `quote(password)` leaves `/` unescaped by default, so passwords containing slashes could corrupt the DSN.
+- **Fix:** Switched to `quote(password, safe="")` and added a slash-containing password test.
+- **Files modified:** `backend/app/core/config.py`, `backend/tests/test_settings.py`
+- **Verification:** `UV_CACHE_DIR=/tmp/uv-cache make backend-lint`, `UV_CACHE_DIR=/tmp/uv-cache make backend-type`, `UV_CACHE_DIR=/tmp/uv-cache make backend-test`
+- **Committed in:** `1fb613d`
+
 ---
 
-**Total deviations:** 1 auto-fixed (secret handling).
+**Total deviations:** 2 auto-fixed (secret handling).
 **Impact on plan:** Strengthens the planned secret separation without adding later-phase functionality.
 
 ## Issues Encountered
