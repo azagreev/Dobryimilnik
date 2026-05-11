@@ -1,0 +1,2 @@
+class CatalogService:
+    pass
