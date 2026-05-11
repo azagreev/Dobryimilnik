@@ -63,7 +63,7 @@ Plans:
 - [x] 02-02: Staging tables and source identity preservation
 - [x] 02-03: Validation and normalization pipeline
 - [x] 02-04: Idempotent publish into canonical tables
-- [ ] 02-05: Import audit report and failure review
+- [x] 02-05: Import audit report and failure review
 
 ### Phase 3: Catalog Core and Search APIs
 **Goal:** Provide a complete canonical catalog backend with public read APIs and reliable search.

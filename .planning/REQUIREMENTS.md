@@ -14,11 +14,11 @@
 
 ### Import
 
-- [ ] **IMP-01**: Admin can import Livemaster catalog data into staging tables with source IDs preserved.
-- [ ] **IMP-02**: Admin can validate imported products, variants, categories, attributes, prices, stock, media, and SEO fields before publishing.
-- [ ] **IMP-03**: Admin can view an import audit report showing imported, skipped, failed, and manually required records.
-- [ ] **IMP-04**: System can re-run imports idempotently without duplicating products, variants, categories, or media.
-- [ ] **IMP-05**: System can import blog posts, reviews, customer records, and historical orders into appropriate staging or canonical tables when source data is available.
+- [x] **IMP-01**: Admin can import Livemaster catalog data into staging tables with source IDs preserved.
+- [x] **IMP-02**: Admin can validate imported products, variants, categories, attributes, prices, stock, media, and SEO fields before publishing.
+- [x] **IMP-03**: Admin can view an import audit report showing imported, skipped, failed, and manually required records.
+- [x] **IMP-04**: System can re-run imports idempotently without duplicating products, variants, categories, or media.
+- [x] **IMP-05**: System can import blog posts, reviews, customer records, and historical orders into appropriate staging or canonical tables when source data is available.
 
 ### Catalog
 
@@ -128,11 +128,11 @@
 | FND-02 | Phase 1 | Complete |
 | FND-03 | Phase 1 | Complete |
 | FND-04 | Phase 1 | Complete |
-| IMP-01 | Phase 2 | Pending |
-| IMP-02 | Phase 2 | Pending |
-| IMP-03 | Phase 2 | Pending |
-| IMP-04 | Phase 2 | Pending |
-| IMP-05 | Phase 2 | Pending |
+| IMP-01 | Phase 2 | Complete |
+| IMP-02 | Phase 2 | Complete |
+| IMP-03 | Phase 2 | Complete |
+| IMP-04 | Phase 2 | Complete |
+| IMP-05 | Phase 2 | Complete |
 | CAT-01 | Phase 3 | Pending |
 | CAT-02 | Phase 3 | Pending |
 | CAT-03 | Phase 3 | Pending |
