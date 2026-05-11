@@ -45,7 +45,7 @@ Plans:
 - [x] 01-03: Configuration, secrets, and environment management
 
 **Wave 3** *(blocked on Wave 2 completion)*
-- [ ] 01-04: CI quality gates and smoke tests
+- [x] 01-04: CI quality gates and smoke tests
 
 ### Phase 2: Livemaster Import Pipeline
 **Goal:** Import source marketplace data into auditable staging and canonical structures without duplication.
