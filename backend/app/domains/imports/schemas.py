@@ -49,3 +49,7 @@ class ImportErrorTable(APIModel):
     batch_id: UUID
     page: PageParams
     errors: list[ImportErrorRow]
+
+
+class ImportBatchRunResponse(ImportBatchSummary):
+    pass
