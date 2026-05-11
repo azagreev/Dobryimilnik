@@ -64,6 +64,8 @@
 - [ ] **SHP-01**: Customer can request delivery calculation during checkout.
 - [ ] **SHP-02**: System stores selected delivery method, address, price, and provider metadata on the order.
 - [ ] **SHP-03**: Admin can update shipment status and tracking information.
+- [ ] **SHP-04**: System stores product and package logistics data required by delivery provider APIs: item weight, dimensions, shipping class/restrictions, packaging dimensions/weight, declared value, origin warehouse, destination address or pickup point, and provider tariff metadata.
+- [ ] **SHP-05**: System calculates delivery through provider adapters using an internal normalized shipment quote request instead of provider-specific fields embedded directly in catalog or order models.
 
 ### Users
 
@@ -163,6 +165,8 @@
 | SHP-01 | Phase 6 | Pending |
 | SHP-02 | Phase 6 | Pending |
 | SHP-03 | Phase 7 | Pending |
+| SHP-04 | Phase 6 | Pending |
+| SHP-05 | Phase 6 | Pending |
 | USR-01 | Phase 7 | Pending |
 | USR-02 | Phase 7 | Pending |
 | USR-03 | Phase 7 | Pending |

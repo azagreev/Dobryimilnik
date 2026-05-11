@@ -120,20 +120,29 @@ Plans:
 ### Phase 6: Payment, Shipping, and 54-FZ Fiscalization
 **Goal:** Connect checkout to payment, delivery calculation, and legally required receipt workflows.
 **Depends on:** Phase 5
-**Requirements:** [PAY-01, PAY-02, PAY-03, FIS-01, FIS-02, FIS-03, SHP-01, SHP-02]
+**Requirements:** [PAY-01, PAY-02, PAY-03, FIS-01, FIS-02, FIS-03, SHP-01, SHP-02, SHP-04, SHP-05]
 **Success Criteria** (what must be TRUE):
   1. Customer can initiate payment for an order.
   2. Duplicate payment callbacks do not create duplicate side effects.
   3. Paid orders trigger receipt creation and expose fiscal status to admin.
-  4. Checkout stores selected delivery method, address, price, and provider metadata.
+  4. Checkout calculates delivery from stored logistics data: item weight/dimensions, packaging, origin warehouse, destination address or pickup point, declared value, and provider tariff constraints.
+  5. Checkout stores selected delivery method, address, price, and provider metadata.
 **Plans:** 5 plans
 
 Plans:
 - [ ] 06-01: YouKassa payment initiation and payment records
 - [ ] 06-02: Idempotent payment callback handling
-- [ ] 06-03: Shipping calculation and order delivery metadata
+- [ ] 06-03: Shipping logistics data, provider adapters, calculation, and order delivery metadata
 - [ ] 06-04: 54-FZ fiscal receipt request, retry, and status tracking
 - [ ] 06-05: Payment, shipping, and fiscal admin visibility
+
+Shipping data contract for 06-03:
+- Store logistics attributes on sellable variants/SKUs: weight, length, width, height, shipping class, fragile/restricted flags, and whether the item can be combined into one package.
+- Store reusable packaging options: internal dimensions, package weight, max weight, and package selection rules.
+- Store shipping origins/warehouses even if the first release has one origin.
+- Store carrier/provider configuration separately from catalog/order data: provider code, active tariffs, API credentials reference, supported delivery modes, COD support, dimensional limits, and shop markup/discount rules.
+- Build provider integrations around an internal normalized shipment quote request, then map it to CDEK, Boxberry, Russian Post, or future carrier APIs.
+- Persist quote/order delivery metadata: calculated price, selected tariff, delivery mode, provider response reference, pickup point or address, declared value, insurance/COD flags, and tracking status.
 
 ### Phase 7: Users, RBAC, and Order Admin
 **Goal:** Add customer identity, address management, protected admin access, and complete order operations.
