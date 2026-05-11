@@ -42,7 +42,7 @@ services:
     environment:
       APP_ENV: local
       APP_NAME: Dobryimilnik Backend
-      DATABASE_URL: postgresql+asyncpg://dobryimilnik:local-postgres-password@postgres:5432/dobryimilnik
+      DATABASE_URL: postgresql+asyncpg://dobryimilnik@postgres:5432/dobryimilnik
       REDIS_URL: redis://redis:6379/0
       MEILISEARCH_URL: http://meilisearch:7700
       KEYCLOAK_URL: http://keycloak:8080

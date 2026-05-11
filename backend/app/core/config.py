@@ -1,6 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
+from urllib.parse import quote
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -29,6 +30,17 @@ class Settings(BaseSettings):
 
     def secret_key(self) -> str | None:
         return self.read_secret_file(self.secret_key_file)
+
+    def sqlalchemy_database_url(self) -> str:
+        password = self.postgres_password()
+        if password is None or "@" not in self.database_url or "://" not in self.database_url:
+            return self.database_url
+
+        scheme, rest = self.database_url.split("://", 1)
+        userinfo, hostinfo = rest.split("@", 1)
+        if ":" in userinfo:
+            return self.database_url
+        return f"{scheme}://{userinfo}:{quote(password)}@{hostinfo}"
 
 
 @lru_cache

@@ -25,7 +25,7 @@ class Base(DeclarativeBase):
 
 
 def create_engine() -> AsyncEngine:
-    return create_async_engine(get_settings().database_url, pool_pre_ping=True)
+    return create_async_engine(get_settings().sqlalchemy_database_url(), pool_pre_ping=True)
 
 
 engine = create_engine()
