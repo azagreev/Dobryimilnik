@@ -59,7 +59,7 @@ Plans:
 **Plans:** 5 plans
 
 Plans:
-- [ ] 02-01: Source file contracts and import batch model
+- [x] 02-01: Source file contracts and import batch model
 - [ ] 02-02: Staging tables and source identity preservation
 - [ ] 02-03: Validation and normalization pipeline
 - [ ] 02-04: Idempotent publish into canonical tables
