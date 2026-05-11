@@ -1,21 +1,21 @@
-# Database Migrations
+# Миграции базы данных
 
-Alembic migrations live under `backend/alembic/` and run from the backend directory through Makefile targets.
+Миграции Alembic находятся в `backend/alembic/` и запускаются из каталога backend через цели `Makefile`.
 
-## Commands
+## Команды
 
-- `make migrate-up` applies all migrations with `alembic upgrade head`.
-- `make migrate-down` rolls migrations back to base with `alembic downgrade base`.
-- `make migrate-revision message="describe change"` creates an autogenerate revision.
+- `make migrate-up` применяет все миграции через `alembic upgrade head`.
+- `make migrate-down` откатывает миграции до базы через `alembic downgrade base`.
+- `make migrate-revision message="описание изменения"` создает ревизию с автогенерацией.
 
-## Domain Sections
+## Доменные схемы
 
-Phase 1 creates PostgreSQL schemas for these domain streams:
+На этапе 1 создаются схемы PostgreSQL для следующих доменных потоков:
 
 - `catalog`
 - `orders`
 - `users`
 - `content`
-- `public` for analytics, audit, and shared PostgreSQL objects
+- `public` для аналитики, аудита и общих объектов PostgreSQL
 
-No import `staging` schema is created in Phase 1, and migrations do not insert business seed data.
+На этапе 1 схема `staging` для импорта не создается, а миграции не вставляют бизнесовые seed-данные.

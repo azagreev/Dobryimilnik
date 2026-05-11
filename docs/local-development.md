@@ -1,23 +1,23 @@
-# Local Development
+# Локальная разработка
 
-Use the Makefile as the developer command surface.
+Используйте `Makefile` как основную поверхность команд для разработки.
 
-## Commands
+## Команды
 
-- `make dev` starts Docker Compose with `postgres`, `redis`, `meilisearch`, `keycloak`, `backend`, and `frontend`.
-- `make down` stops the local stack.
-- `make logs` follows service logs.
-- `make ci` runs the local quality gate.
+- `make dev` запускает Docker Compose со службами `postgres`, `redis`, `meilisearch`, `keycloak`, `backend` и `frontend`.
+- `make down` останавливает локальный стек.
+- `make logs` показывает логи сервисов.
+- `make ci` запускает локальный quality gate.
 
-## URLs
+## Адреса
 
 - Backend: http://localhost:8000/api/v1/health
 - Frontend: http://localhost:3000
 - Keycloak: http://localhost:8080
 - Meilisearch: http://localhost:7700
 
-## Services
+## Сервисы
 
-The local stack contains exactly these Phase 1 services: `postgres`, `redis`, `meilisearch`, `keycloak`, `backend`, and `frontend`.
+Локальный стек содержит ровно эти сервисы этапа 1: `postgres`, `redis`, `meilisearch`, `keycloak`, `backend` и `frontend`.
 
-Environment and secret-file rules are documented in [environment-and-secrets.md](environment-and-secrets.md). The repository intentionally omits `.env.example`; local secret files are developer-created and ignored.
+Правила по окружению и секретным файлам описаны в [environment-and-secrets.md](environment-and-secrets.md). Репозиторий намеренно не содержит `.env.example`; локальные секретные файлы создаются разработчиком и игнорируются.

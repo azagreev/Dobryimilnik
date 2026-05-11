@@ -1,10 +1,10 @@
-# Continuous Integration
+# Непрерывная интеграция
 
-`make ci` is the local equivalent of the Phase 1 CI quality gate.
+`make ci` - локальный эквивалент quality gate этапа 1.
 
-## Local Command Contract
+## Контракт локальной команды
 
-`make ci` runs these commands in order:
+`make ci` выполняет эти команды по порядку:
 
 1. `backend-lint` -> `cd backend && uv run ruff check .`
 2. `backend-type` -> `cd backend && uv run mypy app tests`
@@ -16,8 +16,10 @@
 8. `migrate-down` -> `cd backend && uv run alembic downgrade base`
 9. `docker compose config`
 
-## GitHub Actions Job
+## Job в GitHub Actions
 
-The GitHub Actions workflow runs on pushes and pull requests. It starts a PostgreSQL 16 service, runs backend linting, backend type checks, backend tests with coverage, migration upgrade and downgrade, frontend lint/type/build checks, Compose config validation, and `docker build -t dobryimilnik-backend:test backend`.
+Workflow GitHub Actions запускается на `push` и `pull_request`. Он поднимает сервис PostgreSQL 16, выполняет backend linting, backend type checks, backend tests with coverage, миграции upgrade и downgrade, проверки frontend lint/type/build, валидацию Compose config и `docker build -t dobryimilnik-backend:test backend`.
 
-Frontend Docker image build is deferred. Phase 1 only requires the backend Docker image build check.
+Сборка Docker-образа frontend отложена. На этапе 1 требуется только проверка сборки Docker-образа backend.
+
+Backend tests включают проверку языка документации: тест сканирует `README.md`, `docs/*.md` и `doc/*.md` и падает, если опубликованный текст не является преимущественно русским.

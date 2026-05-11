@@ -1,30 +1,30 @@
-# Environment and Secrets
+# Окружение и секреты
 
-Phase 1 separates runtime configuration from committed code.
+На этапе 1 конфигурация выполнения отделена от закоммиченного кода.
 
-## Environments
+## Окружения
 
-Supported backend environments are:
+Поддерживаемые окружения backend:
 
 - `local`
 - `prod`
 
-No third environment is introduced in Phase 1.
+На этапе 1 третье окружение не вводится.
 
-## Secret Files
+## Секретные файлы
 
-The repository intentionally does not include `.env.example`. Local developers create ignored files under `secrets/local/`:
+Репозиторий намеренно не включает `.env.example`. Локальные разработчики создают игнорируемые файлы в `secrets/local/`:
 
 - `secrets/local/postgres_password.txt`
 - `secrets/local/backend_secret_key.txt`
 
-Docker Compose passes secret locations to the backend through:
+Docker Compose передает backend пути к секретам через:
 
 - `POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password`
 - `SECRET_KEY_FILE=/run/secrets/backend_secret_key`
 
-The backend reads these files at runtime and does not require committed secret values for settings construction.
+Backend читает эти файлы во время выполнения и не требует закоммиченных значений секретов для сборки настроек.
 
-## Production Secret Provider
+## Провайдер секретов для продакшена
 
-Yandex Lockbox is deferred beyond Phase 1. Production integration will be implemented when deployment and external credentials are in scope.
+Yandex Lockbox отложен за пределы этапа 1. Интеграция для продакшена будет реализована, когда в скоуп появятся деплой и внешние учетные данные.
