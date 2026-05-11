@@ -7,6 +7,7 @@
 - `make dev` запускает Docker Compose со службами `postgres`, `redis`, `meilisearch`, `keycloak`, `backend` и `frontend`.
 - `make down` останавливает локальный стек.
 - `make logs` показывает логи сервисов.
+- `make import-catalog` загружает архив `doc/dobryimilnik_catalog.zip` в staging-слой базы данных.
 - `make ci` запускает локальный quality gate.
 
 ## Адреса

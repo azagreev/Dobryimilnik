@@ -1,6 +1,6 @@
 COMPOSE ?= docker compose -f compose.yml
 
-.PHONY: dev down logs backend-lint backend-type backend-test frontend-lint frontend-type frontend-build ci prepare-local-secrets migrate-up migrate-down migrate-revision
+.PHONY: dev down logs backend-lint backend-type backend-test frontend-lint frontend-type frontend-build ci prepare-local-secrets migrate-up migrate-down migrate-revision import-catalog
 
 dev: prepare-local-secrets
 	$(COMPOSE) up --build
@@ -42,6 +42,9 @@ migrate-down:
 
 migrate-revision:
 	cd backend && uv run alembic revision --autogenerate -m "$(message)"
+
+import-catalog:
+	cd backend && uv run python scripts/import_catalog_archive.py --zip ../doc/dobryimilnik_catalog.zip
 
 ci: prepare-local-secrets backend-lint backend-type backend-test frontend-lint frontend-type frontend-build migrate-up migrate-down
 	$(COMPOSE) config
