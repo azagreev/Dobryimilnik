@@ -41,8 +41,8 @@ Plans:
 - [x] 01-01: Repository structure, service scaffold, and local development workflow
 
 **Wave 2** *(blocked on Wave 1 completion)*
-- [ ] 01-02: PostgreSQL schemas, migration tooling, and baseline models
-- [ ] 01-03: Configuration, secrets, and environment management
+- [x] 01-02: PostgreSQL schemas, migration tooling, and baseline models
+- [x] 01-03: Configuration, secrets, and environment management
 
 **Wave 3** *(blocked on Wave 2 completion)*
 - [ ] 01-04: CI quality gates and smoke tests

@@ -8,9 +8,9 @@
 ### Foundation
 
 - [x] **FND-01**: Developer can run the backend, database, cache, search, auth, and frontend services locally through documented commands.
-- [ ] **FND-02**: Developer can create and apply PostgreSQL migrations for domain schemas.
+- [x] **FND-02**: Developer can create and apply PostgreSQL migrations for domain schemas.
 - [ ] **FND-03**: CI runs linting, type checks, tests, and migration checks before deployment.
-- [ ] **FND-04**: Application configuration and secrets are separated by environment and never committed.
+- [x] **FND-04**: Application configuration and secrets are separated by environment and never committed.
 
 ### Import
 
@@ -125,9 +125,9 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | FND-01 | Phase 1 | Complete |
-| FND-02 | Phase 1 | Pending |
+| FND-02 | Phase 1 | Complete |
 | FND-03 | Phase 1 | Pending |
-| FND-04 | Phase 1 | Pending |
+| FND-04 | Phase 1 | Complete |
 | IMP-01 | Phase 2 | Pending |
 | IMP-02 | Phase 2 | Pending |
 | IMP-03 | Phase 2 | Pending |
