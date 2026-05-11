@@ -38,7 +38,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 **Wave 1**
-- [ ] 01-01: Repository structure, service scaffold, and local development workflow
+- [x] 01-01: Repository structure, service scaffold, and local development workflow
 
 **Wave 2** *(blocked on Wave 1 completion)*
 - [ ] 01-02: PostgreSQL schemas, migration tooling, and baseline models
