@@ -14,7 +14,7 @@ The owner can operate sales independently from Livemaster while preserving catal
 
 ### Validated
 
-(None yet - ship to validate)
+- [x] Phase 1 foundation is validated: local service scaffold, FastAPI backend skeleton, baseline PostgreSQL migrations, environment/secret contract, and CI quality gate exist.
 
 ### Active
 
@@ -59,6 +59,8 @@ The commercial reason for the project is material: Livemaster commission exposur
 | Fine phase granularity | The project has legal, migration, SEO, and commerce risks that benefit from smaller phases. | - Pending |
 | Parallel execution enabled | Independent plans may run concurrently once phases are planned. | - Pending |
 | Balanced model profile | Good default for quality/cost on planning agents. | - Pending |
+| Phase 1 uses sequential Codex execution | Codex does not provide GSD worktree isolation, so Phase 1 execution ran sequentially on the main checkout. | Completed in Phase 1 |
+| Backend DATABASE_URL omits committed password | Secret values must come from runtime secret files, including local PostgreSQL passwords. | Completed in Phase 1 |
 
 ## Evolution
 
@@ -78,4 +80,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-11 after initialization*
+*Last updated: 2026-05-11 after Phase 1 completion*
