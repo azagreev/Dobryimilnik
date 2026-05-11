@@ -75,6 +75,10 @@ Use these entry points:
 Do not make direct repo edits outside a GSD workflow unless the user explicitly asks to bypass it.
 <!-- GSD:workflow-end -->
 
+## Communication
+
+- Always respond to the user in Russian.
+
 
 
 <!-- GSD:profile-start -->
