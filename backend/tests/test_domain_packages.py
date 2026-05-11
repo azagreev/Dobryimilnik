@@ -1,6 +1,5 @@
 from importlib import import_module
 
-
 DOMAINS = ("catalog", "orders", "users", "content", "analytics")
 MODULES = ("api", "service", "repository", "models")
 

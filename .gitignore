@@ -15,6 +15,7 @@ coverage.xml
 
 node_modules/
 .next/
+*.tsbuildinfo
 out/
 dist/
 build/
