@@ -20,4 +20,4 @@ Use the Makefile as the developer command surface.
 
 The local stack contains exactly these Phase 1 services: `postgres`, `redis`, `meilisearch`, `keycloak`, `backend`, and `frontend`.
 
-Environment and secret-file rules are documented in [environment-and-secrets.md](environment-and-secrets.md).
+Environment and secret-file rules are documented in [environment-and-secrets.md](environment-and-secrets.md). The repository intentionally omits `.env.example`; local secret files are developer-created and ignored.
