@@ -1,32 +1,32 @@
 # Dobryimilnik
 
-Dobryimilnik is an e-commerce platform being built to migrate a long-running Livemaster shop into an owned sales channel. The first milestone is backend-first: import the catalog reliably, preserve data integrity, and establish the foundation for orders, customers, content, delivery, fiscalization, and admin workflows.
+Dobryimilnik - это e-commerce платформа, которую мы строим для переноса долгоживущего магазина с Livemaster в собственный канал продаж. Первый этап ориентирован на backend: надежный импорт каталога, сохранение целостности данных и создание базы для заказов, клиентов, контента, доставки, фискализации и административных процессов.
 
 ## Stack
 
-- Backend: FastAPI on Python 3.12
+- Backend: FastAPI на Python 3.12
 - Database: PostgreSQL 16
 - Frontend: Next.js 14
-- Supporting services: Redis, Meilisearch, Keycloak
-- Local orchestration: Docker Compose
+- Сопутствующие сервисы: Redis, Meilisearch, Keycloak
+- Локальная оркестрация: Docker Compose
 
-## Repository Layout
+## Структура репозитория
 
-- `backend/` - FastAPI service, Alembic migrations, and backend tests
-- `frontend/` - Next.js application
-- `docs/` - project documentation for local development, CI, secrets, and migrations
-- `compose.yml` - local development stack
-- `Makefile` - developer command surface
+- `backend/` - сервис FastAPI, миграции Alembic и backend-тесты
+- `frontend/` - приложение Next.js
+- `docs/` - документация по локальной разработке, CI, секретам и миграциям
+- `compose.yml` - локальный стек разработки
+- `Makefile` - основная поверхность команд для разработки
 
-## Local Development
+## Локальная разработка
 
-The Makefile is the main entry point.
+Основная точка входа - `Makefile`.
 
 ```bash
 make dev
 ```
 
-Starts the local stack with:
+Запускает локальный стек:
 
 - `postgres`
 - `redis`
@@ -35,30 +35,30 @@ Starts the local stack with:
 - `backend`
 - `frontend`
 
-Useful commands:
+Полезные команды:
 
-- `make down` - stop the local stack
-- `make logs` - follow service logs
-- `make ci` - run the local quality gate
+- `make down` - остановить локальный стек
+- `make logs` - смотреть логи сервисов
+- `make ci` - запустить локальный quality gate
 
-## Endpoints
+## Точки доступа
 
-- Backend health: http://localhost:8000/api/v1/health
+- Health backend: http://localhost:8000/api/v1/health
 - Frontend: http://localhost:3000
 - Keycloak: http://localhost:8080
 - Meilisearch: http://localhost:7700
 
-## Configuration
+## Конфигурация
 
-Local secrets are created on demand by `make dev` and are intentionally not committed. See [docs/environment-and-secrets.md](docs/environment-and-secrets.md) for the exact file locations and runtime wiring.
+Локальные секреты создаются по запросу командой `make dev` и намеренно не коммитятся. Точные пути к файлам и схема подключения описаны в [docs/environment-and-secrets.md](docs/environment-and-secrets.md).
 
-## Documentation
+## Документация
 
-- [Local development](docs/local-development.md)
-- [Environment and secrets](docs/environment-and-secrets.md)
-- [Continuous integration](docs/ci.md)
-- [Database migrations](docs/database-migrations.md)
+- [Локальная разработка](docs/local-development.md)
+- [Окружение и секреты](docs/environment-and-secrets.md)
+- [Непрерывная интеграция](docs/ci.md)
+- [Миграции базы данных](docs/database-migrations.md)
 
-## Current State
+## Текущее состояние
 
-The backend exposes a versioned API under `/api/v1`, and the frontend currently contains the initial scaffold for the public app shell. The project is still in foundation work, so the documentation above focuses on how to run and verify the platform locally.
+Backend уже публикует версионированный API под `/api/v1`, а frontend пока содержит только начальный каркас публичной оболочки. Проект находится на стадии базовой платформы, поэтому документация выше сосредоточена на запуске и локальной проверке системы.
