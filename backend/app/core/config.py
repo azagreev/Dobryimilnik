@@ -40,7 +40,7 @@ class Settings(BaseSettings):
         userinfo, hostinfo = rest.split("@", 1)
         if ":" in userinfo:
             return self.database_url
-        return f"{scheme}://{userinfo}:{quote(password)}@{hostinfo}"
+        return f"{scheme}://{userinfo}:{quote(password, safe='')}@{hostinfo}"
 
 
 @lru_cache

@@ -45,7 +45,7 @@ def test_settings_inject_postgres_password_from_file(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
     password_file = tmp_path / "postgres_password.txt"
-    password_file.write_text("local password\n", encoding="utf-8")
+    password_file.write_text("local password/with slash\n", encoding="utf-8")
     monkeypatch.setenv(
         "DATABASE_URL", "postgresql+asyncpg://dobryimilnik@postgres:5432/dobryimilnik"
     )
@@ -55,5 +55,5 @@ def test_settings_inject_postgres_password_from_file(
 
     assert (
         settings.sqlalchemy_database_url()
-        == "postgresql+asyncpg://dobryimilnik:local%20password@postgres:5432/dobryimilnik"
+        == "postgresql+asyncpg://dobryimilnik:local%20password%2Fwith%20slash@postgres:5432/dobryimilnik"
     )
