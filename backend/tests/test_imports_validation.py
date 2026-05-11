@@ -30,6 +30,26 @@ class RecordingRepository:
         self.total_rows = total_rows
         return self.batch
 
+    async def find_source_mapping(
+        self,
+        *,
+        source_system: str,
+        entity_type: ImportEntityType,
+        source_id: str,
+    ) -> None:
+        return None
+
+    async def upsert_source_mapping(
+        self,
+        *,
+        batch_id: uuid.UUID,
+        entity_type: ImportEntityType,
+        source_id: str,
+        content_hash: str | None,
+        source_system: str,
+    ) -> object:
+        return object()
+
     async def add_import_rows(
         self,
         *,

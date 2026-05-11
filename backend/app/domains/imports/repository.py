@@ -56,9 +56,10 @@ class ImportsRepository:
                 row_number=row.row_number,
                 entity_type=row.entity_type.value,
                 source_id=row.source_id,
+                content_hash=row.content_hash,
                 status=status.value,
                 raw_payload=row.raw,
-                normalized_payload={},
+                normalized_payload=row.normalized_payload or {},
             )
             for row in rows
         ]
