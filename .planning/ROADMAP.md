@@ -62,7 +62,7 @@ Plans:
 - [x] 02-01: Source file contracts and import batch model
 - [x] 02-02: Staging tables and source identity preservation
 - [x] 02-03: Validation and normalization pipeline
-- [x] 02-04: Idempotent publish into canonical tables
+- [x] 02-04: Idempotent staging reruns and classification
 - [x] 02-05: Import audit report and failure review
 
 ### Phase 3: Catalog Core and Search APIs
@@ -215,7 +215,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation and Domain Skeleton | 0/4 | Not started | - |
-| 2. Livemaster Import Pipeline | 0/5 | Not started | - |
+| 2. Livemaster Import Pipeline | 5/5 | Complete | 2026-05-11 |
 | 3. Catalog Core and Search APIs | 0/5 | Not started | - |
 | 4. Admin Catalog Operations | 0/4 | Not started | - |
 | 5. Commerce Core | 0/5 | Not started | - |
