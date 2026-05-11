@@ -62,7 +62,7 @@ Plans:
 - [x] 02-01: Source file contracts and import batch model
 - [x] 02-02: Staging tables and source identity preservation
 - [x] 02-03: Validation and normalization pipeline
-- [ ] 02-04: Idempotent publish into canonical tables
+- [x] 02-04: Idempotent publish into canonical tables
 - [ ] 02-05: Import audit report and failure review
 
 ### Phase 3: Catalog Core and Search APIs
