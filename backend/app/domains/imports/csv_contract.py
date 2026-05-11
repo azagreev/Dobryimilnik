@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import csv
+import hashlib
+import json
 from collections.abc import Iterable
 from dataclasses import dataclass
 from enum import StrEnum
@@ -46,6 +48,15 @@ class CsvImportRow:
     entity_type: ImportEntityType
     source_id: str
     raw: dict[str, str]
+    parent_source_id: str | None = None
+    normalized_payload: dict[str, str] | None = None
+    content_hash: str | None = None
+
+
+@dataclass(frozen=True)
+class CsvRawRow:
+    row_number: int
+    raw: dict[str, str]
 
 
 def validate_headers(headers: Iterable[str] | None) -> set[str]:
@@ -79,6 +90,46 @@ def parse_csv_rows(content: str) -> list[CsvImportRow]:
         if not source_id:
             raise CsvContractError(f"Missing source_id at CSV row {index}.")
 
-        rows.append(CsvImportRow(row_number=index, entity_type=entity_type, source_id=source_id, raw=raw))
+        rows.append(build_import_row(index, raw, entity_type=entity_type, source_id=source_id))
 
     return rows
+
+
+def parse_raw_csv_rows(content: str) -> list[CsvRawRow]:
+    reader = csv.DictReader(StringIO(content))
+    validate_headers(reader.fieldnames)
+
+    return [
+        CsvRawRow(
+            row_number=index,
+            raw={key: (value or "").strip() for key, value in raw_row.items() if key is not None},
+        )
+        for index, raw_row in enumerate(reader, start=2)
+    ]
+
+
+def build_import_row(
+    row_number: int,
+    raw: dict[str, str],
+    *,
+    entity_type: ImportEntityType,
+    source_id: str,
+) -> CsvImportRow:
+    normalized_payload = {
+        key: value.strip()
+        for key, value in raw.items()
+        if value is not None and value.strip()
+    }
+    content_hash = hashlib.sha256(
+        json.dumps(normalized_payload, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    ).hexdigest()
+    parent_source_id = normalized_payload.get("parent_source_id") or None
+    return CsvImportRow(
+        row_number=row_number,
+        entity_type=entity_type,
+        source_id=source_id,
+        raw=raw,
+        parent_source_id=parent_source_id,
+        normalized_payload=normalized_payload,
+        content_hash=content_hash,
+    )
